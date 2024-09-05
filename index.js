@@ -4,12 +4,14 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const cors = require("cors");
 const financialRouter = require("./router/financial.router");
-const corsOption = {
-    origin: "http://localhost:5173",
-};
+
+app.use(cors({
+  origin: 'https://financial-tracker-7qou45z5r-eak022s-projects.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 //use Middleware
-app.use(cors(corsOption));
 app.use(express.json());
 app.use(express.urlencoded
     ({ extended: true }));
